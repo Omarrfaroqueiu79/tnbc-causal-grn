@@ -1,0 +1,46 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook checkpoints & autosaves
+.ipynb_checkpoints/
+
+# Python Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Large Single-Cell Data & Binary Matrices (>50MB)
+*.h5ad
+*.h5
+*.mtx
+*.tar.gz
+*.zip
+*.Rds
+*.rda
+data/raw/
+source/
+Final datasets/
+tnbc_dataset_package/
+TNBC_Final_Dataset/
+
+# Oversized intermediate files
+TNBC_Causal_Tripartite_GRN.csv
+Enhancer_TargetGene_Responses.csv
+*.tiff
+
+# Temporary Office & Working Lock Files
+~$*.docx
+~$*.pptx
+*.tmp
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment Credentials & Secrets
+.env
+*.token
