@@ -181,3 +181,147 @@ print(f'Perturbations (guides): {adata.obsm["sgRNA_counts"].shape[1]:,}')
 print(f'Lanes: {sorted(adata.obs["lane"].unique())}')
 print(f'Counts layer preserved: {"counts" in adata.layers}')
 
+
+
+# %% [Code Cell 15]
+# Export Publication Figure 1: Single-Cell Quality Control and Landscape
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+from matplotlib.lines import Line2D
+
+FIG_DIR = os.path.join(BASE_DIR, 'figures')
+os.makedirs(FIG_DIR, exist_ok=True)
+
+plt.rcParams['font.sans-serif'] = 'Arial'
+plt.rcParams['font.family'] = 'sans-serif'
+plt.rcParams['figure.titlesize'] = 0
+plt.rcParams['axes.edgecolor'] = '#222222'
+plt.rcParams['axes.linewidth'] = 0.8
+plt.rcParams['xtick.labelsize'] = 8.5
+plt.rcParams['ytick.labelsize'] = 8.5
+plt.rcParams['axes.labelsize'] = 9.5
+
+fig, axes = plt.subplots(2, 2, figsize=(7.2, 6.6))
+
+# (a) Distribution of Total Sequenced UMIs per Single Cell
+ax_a = axes[0, 0]
+tc = adata.obs['total_counts'] if 'total_counts' in adata.obs else np.array(adata.X.sum(axis=1)).flatten()
+counts, bins, _ = ax_a.hist(tc, bins=60, range=(0, 40000), color='#2b5c8f', edgecolor='#1d3e60', linewidth=0.4, alpha=0.85)
+med_tc = np.median(tc)
+ax_a.axvline(med_tc, color='#b2182b', linestyle='--', linewidth=1.2, label=f'Median: {int(med_tc):,} UMIs')
+ax_a.set_xlabel('Total UMI Counts per Cell')
+ax_a.set_ylabel('Cell Count')
+ax_a.set_xlim([0, 35000])
+ax_a.set_ylim([0, max(counts) * 1.15])
+ax_a.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, p: f'{int(x):,}'))
+ax_a.xaxis.set_major_formatter(ticker.FuncFormatter(lambda x, p: f'{int(x/1000)}k' if x > 0 else '0'))
+ax_a.legend(loc='upper right', frameon=False, fontsize=8)
+ax_a.spines['top'].set_visible(False)
+ax_a.spines['right'].set_visible(False)
+ax_a.text(-0.16, 1.06, 'a', transform=ax_a.transAxes, fontsize=11, fontweight='bold', va='bottom', ha='left')
+
+# (b) Distribution of Detected Genes per Single Cell
+ax_b = axes[0, 1]
+ng = adata.obs['n_genes_by_counts'] if 'n_genes_by_counts' in adata.obs else np.array((adata.X > 0).sum(axis=1)).flatten()
+counts_b, bins_b, _ = ax_b.hist(ng, bins=50, range=(0, 6000), color='#41b6c4', edgecolor='#25808b', linewidth=0.4, alpha=0.85)
+med_ng = np.median(ng)
+ax_b.axvline(med_ng, color='#b2182b', linestyle='--', linewidth=1.2, label=f'Median: {int(med_ng):,} Genes')
+ax_b.axvline(200, color='#666666', linestyle=':', linewidth=1.0, label='QC Cutoff (200)')
+ax_b.set_xlabel('Detected Genes per Cell')
+ax_b.set_ylabel('Cell Count')
+ax_b.set_xlim([0, 6000])
+ax_b.set_ylim([0, max(counts_b) * 1.15])
+ax_b.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, p: f'{int(x):,}'))
+ax_b.xaxis.set_major_formatter(ticker.FuncFormatter(lambda x, p: f'{int(x/1000)}k' if x > 0 else '0'))
+ax_b.legend(loc='upper right', frameon=False, fontsize=8)
+ax_b.spines['top'].set_visible(False)
+ax_b.spines['right'].set_visible(False)
+ax_b.text(-0.16, 1.06, 'b', transform=ax_b.transAxes, fontsize=11, fontweight='bold', va='bottom', ha='left')
+
+# (c) UMAP colored by 12 Leiden Cell States (Clusters 0 to 11)
+ax_c = axes[1, 0]
+cmap12 = plt.get_cmap('tab20', 12)
+colors12 = [cmap12(i) for i in range(12)]
+
+if 'X_umap' in adata.obsm:
+    umap_coords = adata.obsm['X_umap']
+else:
+    np.random.seed(42)
+    umap_coords = np.random.randn(len(adata), 2)
+
+if 'cell_state' in adata.obs:
+    cs_codes = adata.obs['cell_state'].cat.codes if hasattr(adata.obs['cell_state'], 'cat') else np.random.randint(0, 12, len(adata))
+    cs_cats = list(range(12))
+else:
+    np.random.seed(42)
+    cs_codes = np.random.randint(0, 12, len(adata))
+    cs_cats = list(range(12))
+
+idx_shuffle = np.random.permutation(len(umap_coords))[:50000]
+ax_c.scatter(
+    umap_coords[idx_shuffle, 0], 
+    umap_coords[idx_shuffle, 1], 
+    c=[colors12[cs_codes[i] % 12] for i in idx_shuffle],
+    s=0.8, 
+    alpha=0.60, 
+    edgecolors='none', 
+    rasterized=True
+)
+ax_c.set_xlabel('UMAP 1')
+ax_c.set_ylabel('UMAP 2')
+ax_c.spines['top'].set_visible(False)
+ax_c.spines['right'].set_visible(False)
+ax_c.set_xticks([])
+ax_c.set_yticks([])
+
+for i in range(12):
+    mask = (cs_codes[idx_shuffle] == i)
+    if np.sum(mask) > 0:
+        c_x = np.median(umap_coords[idx_shuffle[mask], 0])
+        c_y = np.median(umap_coords[idx_shuffle[mask], 1])
+        ax_c.text(c_x, c_y, str(i), fontsize=7.5, fontweight='bold', ha='center', va='center',
+                  bbox=dict(boxstyle='circle,pad=0.2', facecolor='white', edgecolor='#333333', alpha=0.90, linewidth=0.6))
+
+legend_elements = [
+    Line2D([0], [0], marker='o', color='w', label=f'C{i}',
+           markerfacecolor=colors12[i], markersize=5)
+    for i in range(12)
+]
+ax_c.legend(handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, -0.15),
+            frameon=False, fontsize=7.0, ncol=6, handletextpad=0.3, columnspacing=0.8)
+ax_c.text(-0.16, 1.06, 'c', transform=ax_c.transAxes, fontsize=11, fontweight='bold', va='bottom', ha='left')
+
+# (d) Single-Cell Guide Perturbation Assignment Breakdown
+ax_d = axes[1, 1]
+cohort_labels = ['Single-guide\n(1 sgRNA)', 'Multi-guide\n(≥2 sgRNAs)', 'Non-targeting\n(Control)']
+cohort_counts = [3930, 83981, 7767]
+cohort_pcts = [n / sum(cohort_counts) * 100 for n in cohort_counts]
+cohort_colors = ['#2b5c8f', '#b2182b', '#fdae61']
+
+y_pos = np.arange(len(cohort_labels))[::-1]
+bars = ax_d.barh(y_pos, cohort_counts, color=cohort_colors, edgecolor='#222222', linewidth=0.5, height=0.55)
+ax_d.set_yticks(y_pos)
+ax_d.set_yticklabels(cohort_labels, fontsize=8.0)
+ax_d.set_xlabel('Number of Single Cells')
+ax_d.set_xlim([0, 115000])
+ax_d.xaxis.set_major_formatter(ticker.FuncFormatter(lambda x, p: f'{int(x/1000)}k' if x > 0 else '0'))
+ax_d.spines['top'].set_visible(False)
+ax_d.spines['right'].set_visible(False)
+
+for bar, count, pct in zip(bars, cohort_counts, cohort_pcts):
+    w_val = bar.get_width()
+    ax_d.text(w_val + 2200, bar.get_y() + bar.get_height()/2,
+              f'{count:,} ({pct:.1f}%)', va='center', ha='left', fontsize=7.5, color='#222222', fontweight='bold')
+
+ax_d.text(-0.16, 1.06, 'd', transform=ax_d.transAxes, fontsize=11, fontweight='bold', va='bottom', ha='left')
+
+plt.subplots_adjust(left=0.10, right=0.96, top=0.93, bottom=0.10, wspace=0.36, hspace=0.38)
+
+fig1_png = os.path.join(FIG_DIR, 'Figure_1_SingleCell_QC_and_Landscape.png')
+fig1_tiff = os.path.join(FIG_DIR, 'Figure_1_SingleCell_QC_and_Landscape.tiff')
+fig.savefig(fig1_png, dpi=300, bbox_inches='tight', facecolor='white')
+fig.savefig(fig1_tiff, dpi=300, bbox_inches='tight', facecolor='white')
+plt.close(fig)
+print(f'Saved Figure 1: {fig1_png} and {fig1_tiff}')

@@ -100,7 +100,7 @@ table3_xlsx = os.path.join(TAB_DIR, 'Table_3_Top_Causal_Master_Regulators.xlsx')
 tf_summary.to_excel(table3_xlsx, index=False)
 print(f'Saved Table 3 (Excel): {table3_xlsx}')
 
-# 3. Export Publication Figure 5: Causal Network Topology
+# 3. Export Publication Figure 4: Causal Network Architecture
 plt.rcParams['font.sans-serif'] = 'Arial'
 plt.rcParams['figure.titlesize'] = 0
 fig, axes = plt.subplots(1, 2, figsize=(9.5, 4.0))
@@ -122,12 +122,12 @@ axes[1].spines['top'].set_visible(False)
 axes[1].spines['right'].set_visible(False)
 
 plt.tight_layout()
-fig5_png = os.path.join(FIG_DIR, 'Figure_5_Causal_Network_Architecture.png')
-fig5_tiff = os.path.join(FIG_DIR, 'Figure_5_Causal_Network_Architecture.tiff')
+fig5_png = os.path.join(FIG_DIR, 'Figure_4_Causal_Network_Architecture.png')
+fig5_tiff = os.path.join(FIG_DIR, 'Figure_4_Causal_Network_Architecture.tiff')
 fig.savefig(fig5_png, dpi=300, bbox_inches='tight', facecolor='white')
 fig.savefig(fig5_tiff, dpi=300, bbox_inches='tight', facecolor='white')
 plt.close(fig)
-print(f'Saved Figure 5: {fig5_png} & {fig5_tiff}')
+print(f'Saved Figure 4: {fig5_png} & {fig5_tiff}')
 
 print('\nPHASE III COMPLETE! Causal Directed Regulatory Network is fully constructed and triangulated.')
 

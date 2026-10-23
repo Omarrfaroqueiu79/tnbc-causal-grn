@@ -303,7 +303,7 @@ ax_pr.set_ylim([0.0, 1.05])
 ax_pr.spines['top'].set_visible(False)
 ax_pr.spines['right'].set_visible(False)
 ax_pr.legend(loc='lower left', frameon=False, fontsize=7)
-ax_pr.text(-0.20, 1.06, 'a', transform=ax_pr.transAxes, fontsize=11, fontweight='bold', va='bottom', ha='left')
+ax_pr.text(-0.20, 1.10, 'a', transform=ax_pr.transAxes, fontsize=11, fontweight='bold', va='bottom', ha='left')
 
 # (b) ROC Curves
 ax_roc = axes[0, 1]
@@ -320,7 +320,7 @@ ax_roc.set_ylim([0.0, 1.05])
 ax_roc.spines['top'].set_visible(False)
 ax_roc.spines['right'].set_visible(False)
 ax_roc.legend(loc='lower right', frameon=False, fontsize=7)
-ax_roc.text(-0.20, 1.06, 'b', transform=ax_roc.transAxes, fontsize=11, fontweight='bold', va='bottom', ha='left')
+ax_roc.text(-0.20, 1.10, 'b', transform=ax_roc.transAxes, fontsize=11, fontweight='bold', va='bottom', ha='left')
 
 # (c) In Silico Knockout vs Experimental CRISPRi Response
 ax_sim = axes[1, 0]
@@ -329,15 +329,15 @@ ax_sim.scatter(df_in_silico_active['calibrated_pred_fc'], df_in_silico_active['o
 sns.regplot(data=df_in_silico_active, x='calibrated_pred_fc', y='observed_abs_log2_fc', ax=ax_sim,
             scatter=False, color='#b2182b', line_kws={'linewidth': 1.4})
 ax_sim.set_xlabel('Predicted Perturbation Magnitude (|Log2 FC|)')
-ax_sim.set_ylabel('Observed CRISPRi Perturbation (|Log2 FC|)', labelpad=6)
-ax_sim.set_xlim([0.65, 1.65])
-ax_sim.set_ylim([0.65, 1.65])
+ax_sim.set_ylabel('Observed Response (|Log2 FC|)', labelpad=8)
+ax_sim.set_xlim([0.55, 1.75])
+ax_sim.set_ylim([0.55, 1.85])
 ax_sim.spines['top'].set_visible(False)
 ax_sim.spines['right'].set_visible(False)
-ax_sim.text(0.06, 0.88, f'$R^2$ = {r2_val:.2f}\n$r$ = {r_val:.2f} ($p = {p_val:.2e}$)\n$N = {len(df_in_silico_active):,}$ target genes',
-            transform=ax_sim.transAxes, fontsize=8, verticalalignment='top',
+ax_sim.text(0.05, 0.96, f'$R^2$ = {r2_val:.2f}\n$r$ = {r_val:.2f} ($p = {p_val:.2e}$)\n$N = {len(df_in_silico_active):,}$ target genes',
+            transform=ax_sim.transAxes, fontsize=7.5, verticalalignment='top', horizontalalignment='left',
             bbox=dict(boxstyle='round,pad=0.3', facecolor='white', edgecolor='#cccccc', linewidth=0.5))
-ax_sim.text(-0.20, 1.06, 'c', transform=ax_sim.transAxes, fontsize=11, fontweight='bold', va='bottom', ha='left')
+ax_sim.text(-0.20, 1.10, 'c', transform=ax_sim.transAxes, fontsize=11, fontweight='bold', va='bottom', ha='left')
 
 # (d) Clinical Prognostic Stratification
 ax_for = axes[1, 1]
@@ -354,7 +354,7 @@ ax_for.set_ylabel('Prioritized Master Regulator')
 ax_for.spines['top'].set_visible(False)
 ax_for.spines['right'].set_visible(False)
 ax_for.invert_yaxis()
-ax_for.text(-0.20, 1.06, 'd', transform=ax_for.transAxes, fontsize=11, fontweight='bold', va='bottom', ha='left')
+ax_for.text(-0.20, 1.10, 'd', transform=ax_for.transAxes, fontsize=11, fontweight='bold', va='bottom', ha='left')
 
 plt.tight_layout()
 fig7_png = os.path.join(FIG_DIR, 'Figure_7_Benchmarking_and_Clinical_Validation.png')
