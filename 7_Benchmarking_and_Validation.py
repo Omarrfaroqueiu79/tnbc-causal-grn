@@ -334,7 +334,7 @@ ax_sim.set_xlim([0.65, 1.65])
 ax_sim.set_ylim([0.65, 1.65])
 ax_sim.spines['top'].set_visible(False)
 ax_sim.spines['right'].set_visible(False)
-ax_sim.text(0.06, 0.88, f'$R^2$ = {r2_val:.2f}\n$r$ = {r_val:.2f} ($p < 10^{{-15}}$)',
+ax_sim.text(0.06, 0.88, f'$R^2$ = {r2_val:.2f}\n$r$ = {r_val:.2f} ($p = {p_val:.2e}$)\n$N = {len(df_in_silico_active):,}$ target genes',
             transform=ax_sim.transAxes, fontsize=8, verticalalignment='top',
             bbox=dict(boxstyle='round,pad=0.3', facecolor='white', edgecolor='#cccccc', linewidth=0.5))
 ax_sim.text(-0.20, 1.06, 'c', transform=ax_sim.transAxes, fontsize=11, fontweight='bold', va='bottom', ha='left')
