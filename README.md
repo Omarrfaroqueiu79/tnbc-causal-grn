@@ -254,7 +254,7 @@ Trains regularized XGBoost regressors on causal driver weights and computes exac
 python 7_Benchmarking_and_Validation.py
 # Or run 7_Benchmarking_and_Validation.ipynb
 ```
-Executes leak-free quantitative benchmarking against experimental CRISPRi ground truth (AUPRC = 0.875 vs. 0.632 for GENIE3), in silico knockout simulations ($R^2 = 0.473 / 0.913$, $p = 3.37 \times 10^{-122}$), and multivariate Cox survival regression in TCGA-BRCA ($n=1,098$) and METABRIC ($n=1,904$).
+Executes leak-free quantitative benchmarking against experimental CRISPRi ground truth (AUPRC = 0.875 vs. 0.632 for GENIE3), in silico knockout simulations ($R^2 = 0.473, r = 0.688$, $p = 3.37 \times 10^{-122}$), and multivariate Cox survival regression in TNBC cohorts in TCGA-BRCA ($n=160$) and METABRIC ($n=320$).
 
 ### Step 8: Graphical Abstract Generation
 ```bash
