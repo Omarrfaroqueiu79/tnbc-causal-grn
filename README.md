@@ -94,8 +94,8 @@ Our framework was evaluated against held-out experimental CRISPRi ground truth a
 | **Area Under ROC (AUROC)** | **0.900** | 0.887 | 0.712 | 0.684 | **+31.6% vs. GENIE3** |
 | **Precision** | **90.1%** | 71.4% | 67.7% | 64.3% | **+40.1% higher fidelity** |
 | **False Discovery Rate (FDR)** | **9.9%** | 28.6% | 32.3% | 35.7% | **3.6-fold FDR reduction** |
-| **In Silico Perturbation Fidelity ($R^2$)** | **0.473 / 0.913** | — | — | — | Highly concordant ($p = 3.37 \times 10^{-122}$) |
-| **Pearson Correlation ($r$)** | **0.688 / 0.956** | — | — | — | Strong calibration along diagonal |
+| **In Silico Perturbation Fidelity ($R^2$)** | **0.473** | — | — | — | Highly concordant ($p = 3.37 \times 10^{-122}$) |
+| **Pearson Correlation ($r$)** | **0.688** | — | — | — | Strong calibration along diagonal |
 | **Clinical Survival Stratification** | **$p \le 0.019$** | — | — | — | Significant in TCGA-BRCA & METABRIC |
 
 * **Prioritized Master Regulatory Hubs:** CTCF (MRS = 0.986), POLR2A (MRS = 0.983), EP300 (MRS = 0.809), JUND (MRS = 0.806), MYC (MRS = 0.768), SIN3A (MRS = 0.754), SP1 (MRS = 0.744), FOS (MRS = 0.733), HDAC2 (MRS = 0.731), and MAX (MRS = 0.729).
@@ -226,7 +226,7 @@ Queries ENCODE Factorbook ChIP-seq peaks across 819 somatic mutation enhancer lo
 python 3_Cell_States_and_Perturbation_Responses.py
 # Or run 3_Cell_States_and_Perturbation_Responses.ipynb
 ```
-Normalizes expression ($CP10k$, $\ln(1+x)$), selects top 2,000 HVGs, performs Leiden clustering ($k=8$ states), and computes vectorized two-sample Welch $t$-tests across 1,110,566 candidate functional edges ($|\log_2 \text{FC}| \ge 0.25$, $|t| \ge 2.5$).
+Normalizes expression ($CP10k$, $\ln(1+x)$), selects top 2,000 HVGs, performs Leiden clustering ($k=12$ states), and computes vectorized two-sample Welch $t$-tests across 1,110,566 candidate functional edges ($|\log_2 \text{FC}| \ge 0.25$, $|t| \ge 2.5$).
 
 ### Step 4: Triangulated Causal Network Inference
 ```bash
