@@ -1,4 +1,4 @@
-# Triangulating Single-Cell Perturbation Screens with Epigenetic Priors Reconstructs Causal Super-Enhancer Regulatory Networks in Triple-Negative Breast Cancer
+# Integrating CRISPRi Perturbation Responses and Transcription-Factor Binding Priors for Regulatory Network Inference in Triple-Negative Breast Cancer
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
 [![Jupyter Notebook](https://img.shields.io/badge/jupyter-notebook-orange.svg)](https://jupyter.org/)
@@ -8,7 +8,7 @@
 
 This repository contains the complete, reproducible computational biology and causal machine learning pipeline for:
 
-> **"Triangulating Single-Cell Perturbation Screens with Epigenetic Priors Reconstructs Causal Super-Enhancer Regulatory Networks in Triple-Negative Breast Cancer"**  
+> **"Integrating CRISPRi Perturbation Responses and Transcription-Factor Binding Priors for Regulatory Network Inference in Triple-Negative Breast Cancer"**  
 > *Omar Faroque$^1$, Mst. Homayra Jannaty$^1$, Shahriar Ahmed Abir$^2$, Suman Biswas$^{1*}$*  
 > $^1$ Department of Statistics, Islamic University, Kushtia-7003, Bangladesh.  
 > $^2$ Department of Biotechnology and Genetic Engineering, Islamic University, Kushtia-7003, Bangladesh.  
@@ -102,6 +102,12 @@ Our framework was evaluated against held-out experimental CRISPRi ground truth a
 * **Oncogenic Hallmark Programs:** EMT ($p = 1.2 \times 10^{-9}$), E2F Targets ($p = 4.5 \times 10^{-8}$), G2M Checkpoint ($p = 8.1 \times 10^{-7}$), and Hypoxia ($p = 3.4 \times 10^{-5}$).
 * **Non-Linear Switch Dynamics:** SHAP TreeExplainer uncovered sharp threshold activation for AP-1 (JUND) beyond regulatory weight thresholds of 10.0, explaining why linear correlation fails.
 * **Rational Epigenetic Combinations:** Standard cytotoxic chemotherapy achieved only 38% network disruption; dual epigenetic targeting (BETi + HATi: OTX015 + A-485) achieved 81%; triple combination (BETi + HATi + HDACi) achieved **93% in silico disruption** of downstream oncogenic regulatory connectivity.
+
+---
+
+## Peer Review & Revisions
+
+* **Supervisor Review Response Document:** The complete point-by-point response addressing all 48 methodological, statistical, and structural comments is available at [manuscript/Point_by_Point_Response_to_Supervisor_Comments.md](manuscript/Point_by_Point_Response_to_Supervisor_Comments.md) (and compiled [PDF](manuscript/Point_by_Point_Response_to_Supervisor_Comments.pdf)).
 
 ---
 
@@ -291,7 +297,7 @@ If you use this codebase, methodology, or reconstructed regulatory network in yo
 
 ```bibtex
 @article{faroque2026tnbc,
-  title={Triangulating Single-Cell Perturbation Screens with Epigenetic Priors Reconstructs Causal Super-Enhancer Regulatory Networks in Triple-Negative Breast Cancer},
+  title={Integrating CRISPRi Perturbation Responses and Transcription-Factor Binding Priors for Regulatory Network Inference in Triple-Negative Breast Cancer},
   author={Faroque, Omar and Jannaty, Mst. Homayra and Abir, Shahriar Ahmed and Biswas, Suman},
   journal={Working Manuscript Draft},
   year={2026},
