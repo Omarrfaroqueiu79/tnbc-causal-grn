@@ -1,7 +1,7 @@
 # Point-by-Point Response to Supervisor Review Comments
 
 **Manuscript Title:** *Integrating CRISPRi Perturbation Responses and Transcription-Factor Binding Priors for Regulatory Network Inference in Triple-Negative Breast Cancer*  
-**Authors:** Omar Faroque¹, Mst. Homayra Jannaty¹, Shahriar Ahmed Abir², Suman Biswas¹\*  
+**Authors:** Omar Faroque¹, Mst. Homayra Jannaty¹, Shahriar Hasan Abir², Suman Biswas¹\*  
 *¹ Department of Statistics, Faculty of Sciences, Islamic University, Kushtia-7003, Bangladesh*  
 *² Department of Biotechnology and Genetic Engineering, Faculty of Biological Sciences, Islamic University, Kushtia-7003, Bangladesh*  
 *\* Corresponding Author:* `suman@stat.iu.ac.bd`

@@ -9,7 +9,7 @@
 This repository contains the complete, reproducible computational biology and causal machine learning pipeline for:
 
 > **"Integrating CRISPRi Perturbation Responses and Transcription-Factor Binding Priors for Regulatory Network Inference in Triple-Negative Breast Cancer"**  
-> *Omar Faroque$^1$, Mst. Homayra Jannaty$^1$, Shahriar Ahmed Abir$^2$, Suman Biswas$^{1*}$*  
+> *Omar Faroque$^1$, Mst. Homayra Jannaty$^1$, Shahriar Hasan Abir$^2$, Suman Biswas$^{1*}$*  
 > $^1$ Department of Statistics, Islamic University, Kushtia-7003, Bangladesh.  
 > $^2$ Department of Biotechnology and Genetic Engineering, Islamic University, Kushtia-7003, Bangladesh.  
 > $^*$ **Corresponding Author:** `suman@stat.iu.ac.bd`
