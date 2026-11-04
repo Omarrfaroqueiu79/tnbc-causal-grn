@@ -1,5 +1,6 @@
 # Integrating CRISPRi Perturbation Responses and Transcription-Factor Binding Priors for Regulatory Network Inference in Triple-Negative Breast Cancer
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23897809.svg)](https://doi.org/10.5281/zenodo.23897809)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
 [![Jupyter Notebook](https://img.shields.io/badge/jupyter-notebook-orange.svg)](https://jupyter.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -10,8 +11,8 @@ This repository contains the complete, reproducible computational biology and ca
 
 > **"Integrating CRISPRi Perturbation Responses and Transcription-Factor Binding Priors for Regulatory Network Inference in Triple-Negative Breast Cancer"**  
 > *Omar Faroque$^1$, Mst. Homayra Jannaty$^1$, Shahriar Hasan Abir$^2$, Suman Biswas$^{1*}$*  
-> $^1$ Department of Statistics, Islamic University, Kushtia-7003, Bangladesh.  
-> $^2$ Department of Biotechnology and Genetic Engineering, Islamic University, Kushtia-7003, Bangladesh.  
+> $^1$ Department of Statistics and Data Science, Faculty of Sciences, Islamic University, Kushtia, Bangladesh.  
+> $^2$ Department of Biotechnology and Genetic Engineering, Faculty of Biological Sciences, Islamic University, Kushtia, Bangladesh.  
 > $^*$ **Corresponding Author:** `suman@stat.iu.ac.bd`
 
 ---
@@ -284,6 +285,7 @@ To explore:
 
 ## Data Availability
 
+* **High-Throughput Causal Matrices (Zenodo):** The full interventional differential response matrix (S2 Data, 1.11M edges) and complete reconstructed tripartite causal Gene Regulatory Network (S3 Data, 6.36M directed paths) are archived on Zenodo: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23897809.svg)](https://doi.org/10.5281/zenodo.23897809) ([doi.org/10.5281/zenodo.23897809](https://doi.org/10.5281/zenodo.23897809)).
 * **Raw Single-Cell Perturb-seq Data:** NCBI Gene Expression Omnibus accession [GSE224986](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE224986).
 * **Targeted Enhancer Locus Coordinates:** NCBI GEO accession [GSE223812](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE223812).
 * **ENCODE Factorbook Transcription Factor ChIP-seq:** UCSC Table Browser track `encRegTfbsClustered` ([genome.ucsc.edu](https://genome.ucsc.edu)).
@@ -298,7 +300,7 @@ If you use this codebase, methodology, or reconstructed regulatory network in yo
 ```bibtex
 @article{faroque2026tnbc,
   title={Integrating CRISPRi Perturbation Responses and Transcription-Factor Binding Priors for Regulatory Network Inference in Triple-Negative Breast Cancer},
-  author={Faroque, Omar and Jannaty, Mst. Homayra and Abir, Shahriar Ahmed and Biswas, Suman},
+  author={Faroque, Omar and Jannaty, Mst. Homayra and Abir, Shahriar Hasan and Biswas, Suman},
   journal={Working Manuscript Draft},
   year={2026},
   publisher={Department of Statistics, Islamic University, Kushtia, Bangladesh}

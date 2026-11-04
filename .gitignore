@@ -44,3 +44,7 @@ desktop.ini
 # Environment Credentials & Secrets
 .env
 *.token
+
+# Internal review comments and journal guideline sheets
+Comments_TNBC*
+guideline_for_*
